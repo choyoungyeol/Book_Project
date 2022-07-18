@@ -1,0 +1,56 @@
+[
+    {
+        "id": "cc93d1c9d27e2bed",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "우측 측창 컨트롤",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 6,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "2",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1110,
+        "y": 440,
+        "wires": [
+            [
+                "0601a962354c4998"
+            ]
+        ]
+    },
+    {
+        "id": "9d3fa480aef39384",
+        "type": "ui_group",
+        "name": "Environmental Condition",
+        "tab": "9b71e6426497197f",
+        "order": 1,
+        "disp": true,
+        "width": 21,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9b71e6426497197f",
+        "type": "ui_tab",
+        "name": "GreenHouse",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]
