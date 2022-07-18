@@ -1,0 +1,831 @@
+[
+    {
+        "id": "0e77d90f2960b3cd",
+        "type": "tab",
+        "label": "플로우 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2871dc981d735253",
+        "type": "serial in",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "serial": "90c2d770290e3da8",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "c2ad284243e1a9d6",
+                "919ae1699c0baa82",
+                "671835999382a5b5"
+            ]
+        ]
+    },
+    {
+        "id": "c0c93cfda11d1630",
+        "type": "json",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "815730b679f4f3da"
+            ]
+        ]
+    },
+    {
+        "id": "c2293fb933874cc3",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 16,
+        "width": 7,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "oC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 950,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "231d55d1ef2df785",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 17,
+        "width": 7,
+        "height": 6,
+        "gtype": "wave",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 940,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c2ad284243e1a9d6",
+        "type": "function",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "func": "var b=Buffer.from(msg.payload);\nvar s=b.toString();\nvar out=s;\nmsg.payload= out;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "c0c93cfda11d1630"
+            ]
+        ]
+    },
+    {
+        "id": "5e68cd778d3954da",
+        "type": "switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Dew_Temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Absolute Humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Vapor pressure",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "VPD",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "RSW",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LSW",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "RUW",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LUW",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 10,
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "c2293fb933874cc3"
+            ],
+            [
+                "231d55d1ef2df785"
+            ],
+            [
+                "2a32ac41538af302"
+            ],
+            [
+                "8047c2aa7344c7c7"
+            ],
+            [
+                "242016487a3b9ff8"
+            ],
+            [
+                "d5e4b2e9fba6351f"
+            ],
+            [
+                "aeeb1d270c56216f"
+            ],
+            [
+                "f7e647569141b382"
+            ],
+            [
+                "d5d2430aa1d115cf"
+            ],
+            [
+                "4816ecfd5f1bcb61"
+            ]
+        ]
+    },
+    {
+        "id": "815730b679f4f3da",
+        "type": "split",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "5e68cd778d3954da"
+            ]
+        ]
+    },
+    {
+        "id": "2a32ac41538af302",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 18,
+        "width": 7,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Dew-point Temperature",
+        "label": "oC",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 990,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "8047c2aa7344c7c7",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 19,
+        "width": 7,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Absolute Humidity",
+        "label": "g/m3",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 970,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "242016487a3b9ff8",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 20,
+        "width": 7,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Vapour Pressure",
+        "label": "kPa",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 970,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d5e4b2e9fba6351f",
+        "type": "ui_gauge",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "group": "9d3fa480aef39384",
+        "order": 21,
+        "width": 7,
+        "height": 6,
+        "gtype": "gage",
+        "title": "VPD",
+        "label": "kPa",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "30",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 930,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f7e647569141b382",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "좌측 측창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 10,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5d2430aa1d115cf",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "우측 천창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 7,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4816ecfd5f1bcb61",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "좌측 천창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 13,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "919ae1699c0baa82",
+        "type": "ui_text",
+        "z": "0e77d90f2960b3cd",
+        "group": "9d3fa480aef39384",
+        "order": 23,
+        "width": 21,
+        "height": 1,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 370,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5d9710f55891878d",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "좌측 측창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 12,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "3",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "4",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1080,
+        "y": 420,
+        "wires": [
+            [
+                "0601a962354c4998"
+            ]
+        ]
+    },
+    {
+        "id": "6e64512cd6f620c1",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "우측 천창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 9,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "5",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "6",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1080,
+        "y": 460,
+        "wires": [
+            [
+                "0601a962354c4998"
+            ]
+        ]
+    },
+    {
+        "id": "e29650809e14cd79",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "좌측 천창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 15,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "7",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "8",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "0601a962354c4998"
+            ]
+        ]
+    },
+    {
+        "id": "bbb0cc825b2ed7ea",
+        "type": "ui_text",
+        "z": "0e77d90f2960b3cd",
+        "group": "9d3fa480aef39384",
+        "order": 3,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Windows Control",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 360,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "671835999382a5b5",
+        "type": "mqtt out",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "topic": "vegetablestopic/1",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8a063b8eb54d670b",
+        "x": 330,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "0601a962354c4998",
+        "type": "mqtt out",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "topic": "vegetablestopic/2",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "3e2017013ae0a7c4",
+        "x": 1290,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "cc93d1c9d27e2bed",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "우측 측창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 6,
+        "width": 10,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "2",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1080,
+        "y": 380,
+        "wires": [
+            [
+                "0601a962354c4998"
+            ]
+        ]
+    },
+    {
+        "id": "aeeb1d270c56216f",
+        "type": "ui_switch",
+        "z": "0e77d90f2960b3cd",
+        "name": "",
+        "label": "우측 측창",
+        "tooltip": "",
+        "group": "9d3fa480aef39384",
+        "order": 4,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 940,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "46b5a92f338a2dcb",
+        "type": "ui_text",
+        "z": "0e77d90f2960b3cd",
+        "group": "9d3fa480aef39384",
+        "order": 1,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Greenhouse Windows",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 360,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a6f80d9b2a6d038e",
+        "type": "ui_spacer",
+        "z": "0e77d90f2960b3cd",
+        "name": "spacer",
+        "group": "9d3fa480aef39384",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "74ea1821c65f8eaa",
+        "type": "ui_spacer",
+        "z": "0e77d90f2960b3cd",
+        "name": "spacer",
+        "group": "9d3fa480aef39384",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "49fccd8f115c75fa",
+        "type": "ui_spacer",
+        "z": "0e77d90f2960b3cd",
+        "name": "spacer",
+        "group": "9d3fa480aef39384",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "37b307251b52fbec",
+        "type": "ui_spacer",
+        "z": "0e77d90f2960b3cd",
+        "name": "spacer",
+        "group": "9d3fa480aef39384",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "605b181367c78d38",
+        "type": "ui_spacer",
+        "z": "0e77d90f2960b3cd",
+        "name": "spacer",
+        "group": "9d3fa480aef39384",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "90c2d770290e3da8",
+        "type": "serial-port",
+        "serialport": "COM37",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "9d3fa480aef39384",
+        "type": "ui_group",
+        "name": "Environmental Condition",
+        "tab": "9b71e6426497197f",
+        "order": 1,
+        "disp": true,
+        "width": 21,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8a063b8eb54d670b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqttdashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3e2017013ae0a7c4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqttdashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9b71e6426497197f",
+        "type": "ui_tab",
+        "name": "GreenHouse",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]
